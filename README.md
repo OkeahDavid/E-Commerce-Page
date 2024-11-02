@@ -18,12 +18,20 @@ project-folder/
 │   └── webpack.config.js  # Webpack configuration for React
 │
 ├── server/                # Express server folder
-│   ├── src/               # Source files
-│   │   ├── server.js      # Express server entry point
-│   └── package.json       # Express dependencies and scripts
-│   └── tsconfig.json      # TypeScript configuration
+│   ├── src/              # Source files
+│   │   ├── data/
+│   │   │   └── products.ts    # Product data and helper functions
+│   │   ├── routes/
+│   │   │   └── products.ts    # Product routes
+│   │   ├── middleware/
+│   │   │   └── validators.ts  # Request validation
+│   │   ├── tests/
+│   │   │   └── products.test.ts # API endpoint tests
+│   │   └── server.ts     # Express server entry point
+│   └── package.json      # Express dependencies and scripts
+│   └── tsconfig.json     # TypeScript configuration
 │
-└── package.json           # Root package.json to manage both client and server
+└── package.json          # Root package.json to manage both client and server
 ```
 
 ## Prerequisites
@@ -66,7 +74,15 @@ npm run dev
 
 The frontend fetches data from the backend API through the `/api/hello` endpoint.
 
-### 3. Building the Client for Production
+### 3. Running Tests
+To run the API tests, navigate to the server directory and run:
+
+```bash
+cd server
+npm test
+```
+
+### 4. Building the Client for Production
 
 If you want to build the React app for production, run the following command inside the `client` folder:
 
@@ -76,7 +92,7 @@ npm run build
 
 The bundled files will be available in the `client/dist` folder.
 
-### 4. Running Only the Server
+### 5. Running Only the Server
 
 If you'd like to run just the server (without the React frontend), navigate to the `server` directory and start the server:
 
@@ -93,60 +109,81 @@ The server will be available at `http://localhost:3000`.
 - `server`: Contains the Express backend.
 
 ## API Endpoint
+# Hello Endpoint
 
 - `GET /api/hello`: Returns a JSON object with a `message` field saying "Hello from Flink!".
 
 ## Tasks before the live coding interview
 
-As preparation for the live coding interview, you are asked to complete the following tasks:
+# Product Endpoints
 
-### 1. Return products
-
-Add a new endpoint `GET /api/products` that returns all available products.
-
-Example response:
-
+- `GET /api/products`: Returns a list of all products
 ```json
-[
   {
     "id": 1,
     "name": "Product A",
     "description": "Product A description",
-    "price": 20
-  },
-  {
-    "id": 2,
-    "name": "Product B",
-    "description": "Product B description",
-    "price": 30
+    "price": 20,
+    "createdAt": "2024-...",
+    "updatedAt": "2024-..."
   }
-]
 ```
 
-### 2. Return a single product information
-
-Add a new endpoint `GET /api/products/:id` that returns a single product, given its ID. If the product is not found, return a `404` error status code with a meaningful error message.
-
-Example response:
-
+-  `GET /api/products/:id`: Returns a single product by ID
 ```json
-{
+  {
   "id": 1,
   "name": "Product A",
   "description": "Product A description",
-  "price": 20
+  "price": 20,
+  "createdAt": "2024-...",
+  "updatedAt": "2024-..."
+  }
+```
+
+
+## Error Responses
+The API handles various error cases:
+
+- 400 Bad Request: Invalid product ID format
+```json
+{
+  "error": "Invalid product ID. Must be a positive integer."
 }
 ```
 
-### Requirements
+- 404 Not Found: Product not found
+```json
+{
+  "error": "Product not found"
+}
+```
 
-- Handle error cases, such as invalid product IDs.
-- Add tests for the newly created endpoints.
-- For the purpose of this task, you do not need to use an actual database; using an in-memory array to store product data is sufficient.
-- Feel free you make any changes to the codebase that you consider relevant. This project will be used during the live coding interview.
-- Update README file with instructions on how to set up the project after your changes (if new instructions apply).
+- 500 Internal Server Error: Server-side errors
+```json
+{
+  "error": "Internal server error"
+}
+```
+## Data Layer
 
-### Deliverable
+The `products.ts` file in the `data` folder provides an in-memory store of products. This allows the application to handle product data without an actual database, making it simpler to set up and run for development or demonstration purposes.
 
-- Complete the aforementioned tasks and provide us with the updated code.
-- Submit your solution 2 days after receiving the task, adding the link to the code repository, or attaching the solution to the email..
+> **Note**: This setup is not intended for production, as data will reset every time the server restarts. For a production environment, consider integrating a persistent database such as PostgreSQL, MongoDB, or MySQL.
+
+
+### 6. Implementation Details
+
+TypeScript implementation for type safety
+In-memory product storage
+Comprehensive error handling
+Input validation middleware
+Full test coverage for API endpoints
+Clean architecture with separation of concerns
+
+### 7. Development Notes
+
+The project uses TypeScript for both frontend and backend
+Tests are implemented using Jest and Supertest
+Error handling includes validation for product IDs and proper HTTP status codes
+Data persistence is handled in-memory as per requirements
