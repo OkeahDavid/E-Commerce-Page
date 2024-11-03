@@ -116,7 +116,7 @@ The server will be available at `http://localhost:3000`.
 ## Tasks before the live coding interview
 
 # Product Endpoints
-
+curl http://localhost:3000/api/products
 - `GET /api/products`: Returns a list of all products
 ```json
   {
@@ -130,6 +130,7 @@ The server will be available at `http://localhost:3000`.
 ```
 
 -  `GET /api/products/:id`: Returns a single product by ID
+curl http://localhost:3000/api/products/1
 ```json
   {
   "id": 1,
@@ -153,6 +154,7 @@ The API handles various error cases:
 ```
 
 - 404 Not Found: Product not found
+curl http://localhost:3000/api/products/999
 ```json
 {
   "error": "Product not found"
