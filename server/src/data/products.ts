@@ -1,23 +1,14 @@
 // src/data/products.ts
-/**
- * Represents a product in the system
- */
 export interface Product {
-  /** Unique identifier for the product */
   id: number;
-  /** Name of the product */
   name: string;
-  /** Detailed description of the product */
   description: string;
-  /** Price of the product in the default currency */
   price: number;
-  /** Creation date of the product */
   createdAt: Date;
-  /** Last update date of the product */
   updatedAt: Date;
 }
 
-/** In-memory storage for products */
+// Initial product data
 export const products: Product[] = [
   {
     id: 1,
@@ -37,28 +28,17 @@ export const products: Product[] = [
   }
 ];
 
-/**
- * Retrieves all products from the store
- * @returns Array of all products
- */
+// Get all products
 export const getProducts = (): Product[] => {
   return products;
 };
 
-/**
- * Retrieves a single product by its ID
- * @param id - The ID of the product to retrieve
- * @returns The found product or undefined if not found
- */
+// Get product by ID
 export const getProductById = (id: number): Product | undefined => {
   return products.find(product => product.id === id);
 };
 
-/**
- * Adds a new product to the store
- * @param product - The product data to add
- * @returns The newly created product
- */
+// Create new product
 export const addProduct = (product: Omit<Product, 'id' | 'createdAt' | 'updatedAt'>): Product => {
   const newProduct: Product = {
     ...product,
@@ -70,12 +50,7 @@ export const addProduct = (product: Omit<Product, 'id' | 'createdAt' | 'updatedA
   return newProduct;
 };
 
-/**
- * Updates an existing product
- * @param id - The ID of the product to update
- * @param updates - The fields to update
- * @returns The updated product or undefined if not found
- */
+// Update existing product
 export const updateProduct = (id: number, updates: Partial<Omit<Product, 'id' | 'createdAt'>>): Product | undefined => {
   const index = products.findIndex(p => p.id === id);
   if (index === -1) return undefined;

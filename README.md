@@ -188,4 +188,4 @@ Clean architecture with separation of concerns
 The project uses TypeScript for both frontend and backend
 Tests are implemented using Jest and Supertest
 Error handling includes validation for product IDs and proper HTTP status codes
-Data persistence is handled in-memory as per requirements
+Data persistence is handled in-memory as per the requirements

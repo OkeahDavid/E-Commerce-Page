@@ -1,10 +1,10 @@
 // src/tests/products.test.ts
 import request from 'supertest';
 import app from '../server';
-import * as productModule from '../data/products';  // Change import to import whole module
+import * as productModule from '../data/products';
 
 describe('Products API', () => {
-  // Helper function to reset products
+  // Sets up test data and mocks product module functions
   const resetProducts = () => {
     const products = [
       {
@@ -25,7 +25,7 @@ describe('Products API', () => {
       }
     ];
     
-    // Reset the products array
+    // Mock the product module functions with test data
     jest.spyOn(productModule, 'getProducts').mockImplementation(() => products);
     jest.spyOn(productModule, 'getProductById').mockImplementation((id) => 
       products.find(p => p.id === id)
@@ -40,6 +40,7 @@ describe('Products API', () => {
     jest.restoreAllMocks();
   });
 
+  // Tests for GET /api/products endpoint
   describe('GET /api/products', () => {
     it('should return all products', async () => {
       const res = await request(app).get('/api/products');
@@ -77,6 +78,7 @@ describe('Products API', () => {
     });
   });
 
+  // Tests for GET /api/products/:id endpoint
   describe('GET /api/products/:id', () => {
     it('should return a single product if valid id is provided', async () => {
       const res = await request(app).get('/api/products/1');

@@ -6,45 +6,40 @@ import { validateProductId } from '../middleware/validators';
 
 const router: Router = express.Router();
 
-// Define interface extending ParamsDictionary
+// Type for request parameters containing product ID
 interface ProductParams extends ParamsDictionary {
   id: string;
 }
 
-// Get all products endpoint
+// GET /api/products
 router.get('/', (_req: Request, res: Response): void => {
   try {
     const products = getProducts();
     res.json(products);
   } catch (error) {
-    // Catch and respond to server errors
     res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-// Get a single product by ID, with validation middleware
+// GET /api/products/:id
 router.get(
   '/:id',
-  validateProductId, // Ensure product ID is valid before processing
+  validateProductId,
   (req: Request<ProductParams>, res: Response) => {
     try {
       const id = parseInt(req.params.id);
       const product = getProductById(id);
 
-      // Return 404 if product is not found
       if (!product) {
         res.status(404).json({ error: 'Product not found' });
         return;
       }
 
-      // Respond with the found product
       res.json(product);
     } catch (error) {
-      // Handle server-side errors
       res.status(500).json({ error: 'Internal server error' });
     }
   }
 );
-
 
 export default router;
