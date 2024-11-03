@@ -10,7 +10,6 @@ const router: Router = express.Router();
 interface ProductParams extends ParamsDictionary {
   id: string;
 }
-// src/routes/products.ts
 
 // Get all products endpoint
 router.get('/', (_req: Request, res: Response): void => {
