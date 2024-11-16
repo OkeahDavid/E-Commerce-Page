@@ -9,7 +9,7 @@ module.exports = {
     publicPath: "/",
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: [".tsx", ".ts", ".js", ".css"],
   },
   module: {
     rules: [
@@ -17,6 +17,10 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         loader: "ts-loader",
         exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
