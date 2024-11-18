@@ -1,8 +1,9 @@
 // src/routes/products.ts
 import express, { Request, Response, Router } from 'express';
 import { ParamsDictionary } from 'express-serve-static-core';
-import { getProducts, getProductById } from '../data/products';
+import { getProducts, getProductById, Product, updateProduct } from '../data/products';
 import { validateProductId } from '../middleware/validators';
+import { error } from 'console';
 
 const router: Router = express.Router();
 
@@ -36,6 +37,32 @@ router.get(
       }
 
       res.json(product);
+    } catch (error) {
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  }
+);
+router.put(
+  '/:id',
+  validateProductId,
+  (req: Request<ProductParams>, res: Response): void => {
+    try {
+      const id = parseInt(req.params.id);
+      const { name, description, price } = req.body;
+
+      const updates: Partial<Product> = {};
+      
+      if (name !== undefined) updates.name = name;
+      if (description !== undefined) updates.description = description;
+      if (price !== undefined) updates.price = price;
+
+      const updatedProduct = updateProduct(id, updates);
+      if (!updatedProduct) {
+        res.status(404).json({ error: 'Product not found' });
+        return;
+      }
+      
+      res.json(updatedProduct);
     } catch (error) {
       res.status(500).json({ error: 'Internal server error' });
     }

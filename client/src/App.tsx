@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from "react";
+// client/src/App.tsx
+import React from 'react';
+import { ProductList } from '../components/ProductList';
 
 const App: React.FC = () => {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    fetch("http://localhost:3000/api/hello")
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message))
-      .catch((err) => console.error(err));
-  }, []);
-
   return (
-    <div>
-      <h1>{message ? message : "Loading..."}</h1>
+    <div className="app">
+      <main>
+        <ProductList />
+      </main>
     </div>
   );
 };

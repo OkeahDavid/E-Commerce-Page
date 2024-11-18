@@ -31,5 +31,13 @@ module.exports = {
   ],
   devServer: {
     port: 3001,
+    proxy: [
+      {
+        context: ['/api'],
+        target: 'http://localhost:3000',
+        secure: false,
+        changeOrigin: true
+      }
+    ]
   },
 };
