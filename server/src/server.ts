@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/api/hello', (_req, res) => {
-  res.json({ message: 'Hello from Flink!' });
+  res.json({ message: 'Hello from Shoppers!' });
 });
 
 app.use('/api/products', productsRouter);

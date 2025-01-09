@@ -13,7 +13,7 @@ export const products: Product[] = [
   {
     id: 1,
     name: "Product A",
-    description: "Product A description",
+    description: "Product A description", 
     price: 20,
     createdAt: new Date(),
     updatedAt: new Date()
@@ -22,11 +22,27 @@ export const products: Product[] = [
     id: 2,
     name: "Product B",
     description: "Product B description",
-    price: 30,
+    price: 30, 
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    id: 3,
+    name: "Product C",
+    description: "Product C description",
+    price: 40,
+    createdAt: new Date(), 
+    updatedAt: new Date()
+  },
+  {
+    id: 4,
+    name: "Product D",
+    description: "Product D description",
+    price: 50,
     createdAt: new Date(),
     updatedAt: new Date()
   }
-];
+ ];
 
 // Get all products
 export const getProducts = (): Product[] => {

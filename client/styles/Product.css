@@ -95,3 +95,74 @@
    .save-button:hover {
     background: #d81557;
    }
+
+   .edit-input {
+    font-size: 1rem;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 15px;
+    }
+
+    .edit-textarea {
+        font-size: 1rem;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        width: 100%;
+        min-height: 120px;
+        resize: vertical;
+        line-height: 1.6;
+        color: #555;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .button-group button {
+        padding: 10px 25px;
+        border-radius: 4px;
+        border: none;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    .button-group button:first-child {
+        background: #e91e63;
+        color: white;
+    }
+
+    .button-group button:last-child {
+        background: #f1f1f1;
+        color: #333;
+    }
+
+    .error-message {
+        color: #e91e63;
+        margin-top: 15px;
+        font-size: 0.9rem;
+    }
+
+    .sort-button {
+        margin: 0 0 20px 15px;
+        padding: 8px 16px;
+        background: #f1f1f1;
+        border: none;
+        border-radius: 4px;
+        color: #333;
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+
+    .sort-button:hover {
+        background: #e5e5e5;
+    }
+
+    .price-input {
+        text-align: right;
+        width: 120px;
+    }
