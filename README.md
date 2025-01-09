@@ -111,7 +111,7 @@ The server will be available at `http://localhost:3000`.
 ## API Endpoint
 # Hello Endpoint
 
-- `GET /api/hello`: Returns a JSON object with a `message` field saying "Hello from Flink!".
+- `GET /api/hello`: Returns a JSON object with a `message` field saying "Hello from Shoppers!".
 
 ## Tasks before the live coding interview
 
