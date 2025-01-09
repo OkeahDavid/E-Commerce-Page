@@ -166,3 +166,16 @@
         text-align: right;
         width: 120px;
     }
+    .edit-button {
+        background: #e91e63;
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+    
+    .edit-button:hover {
+        background: #d81557;
+    }
