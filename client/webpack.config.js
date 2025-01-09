@@ -38,6 +38,7 @@ module.exports = {
         secure: false,
         changeOrigin: true
       }
-    ]
+    ],
+    hot: true,
   },
 };
